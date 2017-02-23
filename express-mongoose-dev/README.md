@@ -17,5 +17,5 @@ Please bear in mind, that the Token will different for you DB.
 
 ## What you need to do
 
-1. Add path for listing one Presentation by Id and  User's Token
-2. Add path for deleting one Presentation by Id and User's Token
+1. Add path for listing one Presentation by Id and  User's Token `curl -v -X POST -H "Token: 58af11bb80125400132fbba7" --data "id=58af1eb1804499003a20c929" http://localhost:8080/presentations/show`
+2. Add path for deleting one Presentation by Id and User's Token `curl -v -X POST -H "Token: 58af11bb80125400132fbba7" --data "id=58af14388828fc00133d41f0" http://localhost:8080/presentations/remove`
