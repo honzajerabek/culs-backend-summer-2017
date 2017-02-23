@@ -34,6 +34,65 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.post('/remove', function(req, res, next) {
+  var token = req.headers.token;
+  var body = req.body;
+
+  var user = User.findOne({_id: ObjectID(token)}, function(err, user) {
+    if (err) {
+      res.status(500);
+      res.send();
+    } else {
+      if (user != null  || body.id != null) {
+        Presentation.findByIdAndRemove(body.id, function(err, presentation) {
+          if (err) {
+            res.status(500);
+            res.send();
+          } else {
+            console.log(presentations);
+            res.status(200);
+            res.send("removed");
+          }
+
+        });
+      } else {
+        res.status(401);
+        res.send();
+      }
+    }
+  });
+});
+
+router.post('/show', function(req, res, next) {
+  var token = req.headers.token;
+  var body = req.body;
+
+  var user = User.findOne({_id: ObjectID(token)}, function(err, user) {
+    if (err) {
+      res.status(500);
+      res.send();
+    } else {
+      if (user != null  || body.id != null) {
+        Presentation.findById(body.id, function(err, presentation) {
+          if (err) {
+            res.status(500);
+            res.send();
+          } else {
+            console.log(presentation);
+            res.status(200);
+            res.send(presentation);
+          }
+
+        });
+      } else {
+        res.status(401);
+        res.send();
+      }
+    }
+  });
+});
+
+
 router.get('/', function(req, res, next) {
   var token = req.headers.token;
   var body = req.body;
